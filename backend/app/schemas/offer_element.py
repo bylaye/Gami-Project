@@ -12,8 +12,8 @@ class OfferGroupCreate(BaseModel):
 class OfferGroupRead(OfferGroupCreate, BaseRead):
     id: int
 
-class OfferGroupUpdate(OfferGroupCreate):
-    pass
+class OfferGroupUpdate(BaseModel):
+    offer_group_name: Optional[str] = None
 
 
 """ Offer Status """
@@ -23,8 +23,8 @@ class OfferStatusCreate(BaseModel):
 class OfferStatusRead(OfferStatusCreate, BaseRead):
     id: int
 
-class OfferStatusUpdate(OfferStatusCreate):
-    pass
+class OfferStatusUpdate(BaseModel):
+    offer_status_name: Optional[str] = None
 
 
 """ Offer goods (Merchandises)"""
@@ -34,20 +34,21 @@ class OfferGoodsCreate(BaseModel):
 class OfferGoodsRead(OfferGoodsCreate, BaseRead):
     id: int
 
-class OfferGoodsUpdate(OfferGoodsCreate):
-    pass
+class OfferGoodsUpdate(BaseModel):
+    offer_goods_name: Optional[str] = None
 
 
 """ Company offer """
-class CompanyCreate(BaseModel):
-    company_name: str
+class CompanyBase(BaseModel):
     company_country: Optional[str] = None
     company_address: Optional[str] = None
     company_phone: Optional[str] = None
 
+class CompanyCreate(CompanyBase):
+    company_name: str
+
 class CompanyRead(CompanyCreate, BaseRead):
     id: int
 
-class CompanyUpdate(CompanyCreate):
-    pass
-
+class CompanyUpdate(CompanyBase):
+    company_name: Optional[str] = None
