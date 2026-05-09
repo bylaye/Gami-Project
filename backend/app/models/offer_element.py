@@ -34,7 +34,7 @@ class Company(Base):
     __tablename__ = "companies"
 
     id = Column(Integer, primary_key=True, index=True)
-    #company_name = Column(String(50), index=True, nullable=False)
+    company_name = Column(String(50), index=True, nullable=False)
     company_country = Column(String(50), nullable=True)
     company_address = Column(String(50), nullable=True)
     company_phone = Column(String(50), nullable=True)

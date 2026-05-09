@@ -8,8 +8,10 @@ from app.models.offer_element import OfferGroup # noqa
 from app.models.offer_element import OfferStatus  # noqa
 from app.models.offer_element import OfferGoodsType  # noqa
 from app.models.offer_element import Company  # noqa
-from app.models.truck_element import TruckType, TruckStatus  # noqa
 from app.models.transporter import Transporter  # noqa
+from app.models.truck_element import TruckStatus  # noqa
+from app.models.user import User # noqa
+from app.models.truck_element import TruckType # noqa
 from app.models.truck import Truck  # noqa
 from app.models.offer import Offer  # noqa
 from app.models.loading_offer_truck import LoadingOfferTruck  # noqa

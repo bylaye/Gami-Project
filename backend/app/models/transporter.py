@@ -7,12 +7,10 @@ class Transporter(Base):
     __tablename__ = "transporters"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
-    society: Mapped[str] = mapped_column(String(50), index=True, nullable=False)
+    society: Mapped[str] = mapped_column(String(50), unique=True, index=True, nullable=False)
     country: Mapped[str | None] = mapped_column(String(50), nullable=True)
     base_town: Mapped[str | None] = mapped_column(String(50), nullable=True)
     phone: Mapped[str | None] = mapped_column(String(50), nullable=True)
-    
-    # Statuts de gestion
     status: Mapped[bool] = mapped_column(Boolean, default=False)
     is_suspend: Mapped[bool] = mapped_column(Boolean, default=False)
     
@@ -31,4 +29,5 @@ class Transporter(Base):
     #user = relationship("User", back_populates="transporter")
 
     # Un transporteur possède plusieurs camions
-    trucks = relationship("Truck", back_populates="transporter", cascade="all, delete-orphan")
+    #trucks = relationship("Truck", back_populates="transporter", cascade="all, delete-orphan")
+    #trucks = relationship("Truck", back_populates="transporter")
