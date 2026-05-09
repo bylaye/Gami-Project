@@ -36,9 +36,13 @@ def get_current_user(
     user = db.query(User).filter(User.id == token_data).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
+
     # verifier si le user est actif
-    #...
-    #....
+    if  not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="User suspendu ou inactif",
+        )
     return user
 
 

@@ -29,7 +29,8 @@ def create_truck_type(
 @router.post("/status", response_model=TruckStatusRead, summary="Ajouter le status de camion")
 def create_truck_status(
         truck_status_in: TruckStatusCreate,
-        db: Session = Depends(get_db)
+        db: Session = Depends(get_db),
+        current_user: User = Depends(deps.get_current_admin),
     ):
     db_obj = TruckStatus(**truck_status_in.model_dump())
     db.add(db_obj)
