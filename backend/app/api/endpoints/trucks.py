@@ -8,7 +8,7 @@ from app.schemas.truck import TruckRead
 
 router = APIRouter()
 
-@router.post("/trucks", response_model=TruckRead, summary="Ajout Camion")
+@router.post("/add", response_model=TruckRead, summary="Ajout Camion")
 def create_truck(
         truck_in: TruckCreate,
         db: Session = Depends(get_db)

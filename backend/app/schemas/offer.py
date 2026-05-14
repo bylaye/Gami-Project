@@ -10,7 +10,7 @@ class OfferBase(BaseModel):
     offer_date: Optional[datetime] = None
 
 class OfferCreate(OfferBase):
-    type_id: int
+    #type_id: int
     status_id: int
     goods_id: int
     company_id: int

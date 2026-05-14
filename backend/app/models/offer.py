@@ -1,6 +1,14 @@
-from sqlalchemy import String, Float, Integer, ForeignKey, DateTime, Text
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from __future__ import annotations
 from datetime import datetime
+from sqlalchemy import String
+from sqlalchemy import Float
+from sqlalchemy import Integer
+from sqlalchemy import ForeignKey
+from sqlalchemy import DateTime
+from sqlalchemy import Text
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import relationship
 from app.db.base_class import Base
 
 class Offer(Base):
@@ -34,11 +42,11 @@ class Offer(Base):
 
     # --- Relations ORM ---
     
-    company = relationship("Company", back_populates="offers")
-    status = relationship("OfferStatus", back_populates="offers")
-    goods_type = relationship("OfferGoodsType", back_populates="offers")
-    group = relationship("OfferGroup", back_populates="offers")
-    transporter = relationship("Transporter", back_populates="offers")
+    company: Mapped["Company"] = relationship("Company", back_populates="offers")
+    status: Mapped["OffeStatus"] = relationship("OfferStatus", back_populates="offers")
+    goods_type: Mapped["OfferGoodsType"] = relationship("OfferGoodsType", back_populates="offers")
+    group: Mapped["OfferGroup | None"] = relationship("OfferGroup", back_populates="offers")
+    #transporter = relationship("Transporter", back_populates="offers")
     
     # Relation vers les camions chargés pour cette offre
-    loadings = relationship("LoadingOfferTruck", back_populates="offer")
+    #loadings = relationship("LoadingOfferTruck", back_populates="offer")

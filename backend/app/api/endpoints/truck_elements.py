@@ -13,7 +13,7 @@ from app.schemas.truck_element import TruckTypeRead
 
 router = APIRouter()
 
-@router.post("/types", response_model=TruckTypeRead, summary="Ajouter le type de Camion")
+@router.post("/types/add", response_model=TruckTypeRead, summary="Ajouter le type de Camion")
 def create_truck_type(
         truck_type_in: TruckTypeCreate,
         db: Session = Depends(get_db),
@@ -26,7 +26,15 @@ def create_truck_type(
 
     return db_obj
 
-@router.post("/status", response_model=TruckStatusRead, summary="Ajouter le status de camion")
+@router.get("/types/get/all", response_model=list[TruckTypeRead], summary="Les types de Camion")
+def read_truck_types(db: Session = Depends(get_db)):
+    types = db.query(TruckType).all()
+    return types
+
+
+
+
+@router.post("/status/add", response_model=TruckStatusRead, summary="Ajouter le status de camion")
 def create_truck_status(
         truck_status_in: TruckStatusCreate,
         db: Session = Depends(get_db),
@@ -39,3 +47,7 @@ def create_truck_status(
 
     return db_obj
 
+@router.get("/status/get/all", response_model=list[TruckStatusRead], summary="Les differents etats des Camion")
+def read_truck_status(db: Session = Depends(get_db)):
+    status = db.query(TruckStatus).all()
+    return status

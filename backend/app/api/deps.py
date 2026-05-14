@@ -50,3 +50,19 @@ def get_current_admin(current_user: User = Depends(get_current_user)):
     if current_user.role != UserRole.ADMIN:
         raise HTTPException(status_code=403, detail="Reserved Only Admin")
     return current_user
+
+
+def enforce_owner(resource_id: int, current_user: User = Depends(get_current_user)):
+    """
+    Bloque l'acces si l'utilisateur n'est pas admin,
+    et que la ressource ne lui appartient pas.
+    """
+    print(f"current user id {current_user.role}")
+    if current_user.role == UserRole.ADMIN:
+        return
+    if current_user.transporter_id != resource_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Acces Ressource non autorise"
+        )
+

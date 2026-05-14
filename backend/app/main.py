@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from app.api.endpoints import transporters
 from app.api.endpoints import truck_elements
 from app.api.endpoints import trucks
+from app.api.endpoints import offer_elements
+from app.api.endpoints import offers
 from app.api.endpoints import auth
 
 
@@ -30,7 +32,7 @@ app.include_router(
 
 app.include_router(
     truck_elements.router,
-    prefix = "/truck-elements",
+    prefix = "/truck",
     tags = ["Camion Element"]
 )
 
@@ -39,4 +41,16 @@ app.include_router(
     trucks.router,
     prefix = "/truck",
     tags = ["Camions"]
+)
+
+app.include_router(
+    offer_elements.router,
+    prefix = "/offers",
+    tags = ["Offres"]
+)
+
+app.include_router(
+    offers.router,
+    prefix = "/offers",
+    tags = ["Offres"]
 )
